@@ -37,18 +37,22 @@ tf.nn.softmax(predictions).numpy() # 似乎沒有必要，已經是numpy array
 #print(predictions.shape) #(1, 10)
 #print(predictions.dtype) #float64
 
-import sys
-sys.exit("先study code到這裡")
+#import sys
+#sys.exit("先study code到這裡")
 
 loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
 loss_fn(y_train[:1], predictions).numpy()
 model.compile(optimizer='adam',
               loss=loss_fn,
               metrics=['accuracy'])
+print('before fit')
 model.fit(x_train, y_train, epochs=5)
+print('before evaluate')
 model.evaluate(x_test,  y_test, verbose=2)
+print('last 3')
 probability_model = tf.keras.Sequential([
   model,
   tf.keras.layers.Softmax()
 ])
+print('last 2')
 probability_model(x_test[:5])
