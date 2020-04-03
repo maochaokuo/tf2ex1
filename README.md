@@ -9,3 +9,4 @@ tensorflow 2 example 1
 ## change log
 ### 2020/4/3
 1. add my1st-tf2.py
+2. add expertTutorial.py
