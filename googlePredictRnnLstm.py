@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
-data = pd.read_csv('GOOG.csv', date_parser = True)
+data = pd.read_csv('data/GOOG.csv', date_parser = True)
 print(data.tail())
 
 data_training = data[data['Date']<'2019-01-01'].copy()
