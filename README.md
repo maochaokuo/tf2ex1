@@ -10,6 +10,7 @@ tensorflow 2 example 1
 ### 2020/4/4
 1. add text_classification_lstm.py
 2. add googlePredictRnnLstm.py
+3. add keras-sp.py
 
 ### 2020/4/3
 1. add my1st-tf2.py
