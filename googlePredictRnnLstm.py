@@ -61,3 +61,46 @@ regressior.compile(optimizer='adam', loss = 'mean_squared_error')
 
 #regressior.fit(X_train, y_train, epochs=50, batch_size=32)
 regressior.fit(X_train, y_train, epochs=10, batch_size=32)
+
+print(data_test.head())
+
+print(data_training0.tail(60))
+
+past_60_days = data_training0.tail(60)
+
+df = past_60_days.append(data_test, ignore_index = True)
+df = df.drop(['Date', 'Adj Close'], axis = 1)
+print(df.head())
+
+inputs = scaler.transform(df)
+print(inputs)
+
+X_test = []
+y_test = []
+
+for i in range(60, inputs.shape[0]):
+    X_test.append(inputs[i-60:i])
+    y_test.append(inputs[i, 0])
+
+X_test, y_test = np.array(X_test), np.array(y_test)
+X_test.shape, y_test.shape
+
+y_pred = regressior.predict(X_test)
+
+scaler.scale_
+
+scale = 1/8.18605127e-04
+print(scale)
+
+y_pred = y_pred*scale
+y_test = y_test*scale
+
+# Visualising the results
+plt.figure(figsize=(14,5))
+plt.plot(y_test, color = 'red', label = 'Real Google Stock Price')
+plt.plot(y_pred, color = 'blue', label = 'Predicted Google Stock Price')
+plt.title('Google Stock Price Prediction')
+plt.xlabel('Time')
+plt.ylabel('Google Stock Price')
+plt.legend()
+plt.show()
