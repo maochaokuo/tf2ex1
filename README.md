@@ -16,6 +16,7 @@ tensorflow 2 example 1
 6. add main.py & env, data (RL gym for stock trading)
     (too bad stable-baselines does not support TF 2.x)
 7. add textClassificationPreprocess.py
+8. add 1-dqn-tutorial.py
 
 ### 2020/4/3
 1. add my1st-tf2.py
