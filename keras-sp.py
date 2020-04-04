@@ -186,8 +186,10 @@ checkpoint = ModelCheckpoint("./{}.model".format(filepath, monitor='val_acc', ve
 '''
 print('before train model')
 print(type(train_x))
+print(train_x.shape)
 train_y=np.array(train_y)
 print(type(train_y))
+print(train_y.shape)
 print(type(validation_x))
 validation_y=np.array(validation_y)
 print(type(validation_y))

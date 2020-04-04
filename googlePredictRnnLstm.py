@@ -58,7 +58,8 @@ regressior.add(Dense(units = 1))
 regressior.summary()
 
 regressior.compile(optimizer='adam', loss = 'mean_squared_error')
-
+print(X_train.shape)
+print(y_train.shape)
 #regressior.fit(X_train, y_train, epochs=50, batch_size=32)
 regressior.fit(X_train, y_train, epochs=10, batch_size=32)
 
