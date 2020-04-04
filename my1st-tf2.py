@@ -1,4 +1,5 @@
 import tensorflow as tf
+
 tf.keras.backend.set_floatx('float64')
 print("程式開始")
 '''
