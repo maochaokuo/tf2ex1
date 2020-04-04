@@ -12,6 +12,7 @@ tensorflow 2 example 1
 2. add googlePredictRnnLstm.py
 3. add keras-sp.py
 4. add classification.py
+5. add testClassificationHub.py
 
 ### 2020/4/3
 1. add my1st-tf2.py
