@@ -4,7 +4,6 @@ import tensorflow as tf
 
 import matplotlib.pyplot as plt
 
-
 def plot_graphs(history, metric):
     plt.plot(history.history[metric])
     plt.plot(history.history['val_' + metric], '')
@@ -13,27 +12,37 @@ def plot_graphs(history, metric):
     plt.legend([metric, 'val_' + metric])
     plt.show()
 
-
 dataset, info = tfds.load('imdb_reviews/subwords8k', with_info=True,
                           as_supervised=True)
+print(dataset)
 train_examples, test_examples = dataset['train'], dataset['test']
-
+print(train_examples) # <DatasetV1Adapter shapes: ((None,), ()), types: (tf.int64, tf.int64)>
+print(test_examples) # <DatasetV1Adapter shapes: ((None,), ()), types: (tf.int64, tf.int64)>
 encoder = info.features['text'].encoder
 
-print('Vocabulary size: {}'.format(encoder.vocab_size))
+print('Vocabulary size: {}'.format(encoder.vocab_size)) #8185
 
 sample_string = 'Hello TensorFlow.'
 
 encoded_string = encoder.encode(sample_string)
-print('Encoded string is {}'.format(encoded_string))
+print('Encoded string is {}'.format(encoded_string)) #[4025, 222, 6307, 2327, 4043, 2120, 7975]
 
 original_string = encoder.decode(encoded_string)
-print('The original string: "{}"'.format(original_string))
+print('The original string: "{}"'.format(original_string)) #Hello TensorFlow.
 
 assert original_string == sample_string
 
 for index in encoded_string:
     print('{} ----> {}'.format(index, encoder.decode([index])))
+'''
+4025 ----> Hell
+222 ----> o 
+6307 ----> Ten
+2327 ----> sor
+4043 ----> Fl
+2120 ----> ow
+7975 ----> .
+'''
 
 BUFFER_SIZE = 10000
 BATCH_SIZE = 64
@@ -44,6 +53,8 @@ train_dataset = (train_examples
 
 test_dataset = (test_examples
                 .padded_batch(BATCH_SIZE, padded_shapes=([None], [])))
+print(train_dataset) # <DatasetV1Adapter shapes: ((None, None), (None,)), types: (tf.int64, tf.int64)>
+print(test_dataset) # <DatasetV1Adapter shapes: ((None, None), (None,)), types: (tf.int64, tf.int64)>
 ''' TensorFlow 2.2 the padded_shapes argument is no longer required
 train_dataset = (train_examples
                  .shuffle(BUFFER_SIZE)
@@ -146,4 +157,3 @@ print(predictions)
 plot_graphs(history, 'accuracy')
 
 plot_graphs(history, 'loss')
-

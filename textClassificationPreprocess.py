@@ -121,4 +121,3 @@ plt.ylabel('Accuracy')
 plt.legend(loc='lower right')
 
 plt.show()
-

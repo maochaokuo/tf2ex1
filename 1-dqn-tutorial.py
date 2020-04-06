@@ -38,6 +38,6 @@ from tf_agents.utils import common
 
 # Set up a virtual display for rendering OpenAI gym environments.
 display = pyvirtualdisplay.Display(visible=0, size=(1400, 900)).start()
+    # !!... cannot run on windows 10
 
 print(tf.version.VERSION)
-

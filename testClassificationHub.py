@@ -7,10 +7,10 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import tensorflow_datasets as tfds
 
-print("Version: ", tf.__version__)
-print("Eager mode: ", tf.executing_eagerly())
-print("Hub version: ", hub.__version__)
-print("GPU is", "available" if tf.config.experimental.list_physical_devices("GPU") else "NOT AVAILABLE")
+print("Version: ", tf.__version__) #Version:  2.1.0
+print("Eager mode: ", tf.executing_eagerly()) #Eager mode:  True
+print("Hub version: ", hub.__version__) #Hub version:  0.8.0
+print("GPU is", "available" if tf.config.experimental.list_physical_devices("GPU") else "NOT AVAILABLE") #GPU is NOT AVAILABLE
 
 # Split the training set into 60% and 40%, so we'll end up with 15,000 examples
 # for training, 10,000 examples for validation and 25,000 examples for testing.
@@ -20,9 +20,9 @@ train_data, validation_data, test_data = tfds.load(
     as_supervised=True)
 
 train_examples_batch, train_labels_batch = next(iter(train_data.batch(10)))
-print(train_examples_batch)
+print(train_examples_batch) #tf.Tensor([b'....(a lot of text)
 
-print(train_labels_batch)
+print(train_labels_batch) #tf.Tensor([0 0 1 0 1 0 1 1 1 0], shape=(10,), dtype=int64)
 
 embedding = "https://tfhub.dev/google/tf2-preview/gnews-swivel-20dim/1"
 hub_layer = hub.KerasLayer(embedding, input_shape=[],
@@ -49,4 +49,7 @@ results = model.evaluate(test_data.batch(512), verbose=2)
 
 for name, value in zip(model.metrics_names, results):
   print("%s: %.3f" % (name, value))
-
+'''
+loss: 0.315
+accuracy: 0.863
+'''

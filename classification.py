@@ -6,7 +6,7 @@ from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
 
-print(tf.__version__)
+print(tf.__version__) # 2.1.0
 
 fashion_mnist = keras.datasets.fashion_mnist
 
@@ -15,15 +15,15 @@ fashion_mnist = keras.datasets.fashion_mnist
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
-print(train_images.shape)
+print(train_images.shape) #(60000, 28, 28)
 
-print(len(train_labels))
+print(len(train_labels)) #60000
 
-print(train_labels)
+print(train_labels) #[9 0 0 ... 3 0 5]
 
-print(test_images.shape)
+print(test_images.shape) #(10000, 28, 28)
 
-print(len(test_labels))
+print(len(test_labels)) #10000
 
 plt.figure()
 plt.imshow(train_images[0])
@@ -67,10 +67,14 @@ probability_model = tf.keras.Sequential([model,
 predictions = probability_model.predict(test_images)
 
 print(predictions[0])
+'''
+[5.2342743e-06 9.6027564e-10 2.0782998e-09 2.4984509e-08 9.6596625e-07
+ 4.3761372e-03 2.8325094e-06 8.8006191e-02 3.5270450e-06 9.0760505e-01]
+ '''
 
 np.argmax(predictions[0])
 
-print(test_labels[0])
+print(test_labels[0]) #9
 
 def plot_image(i, predictions_array, true_label, img):
   predictions_array, true_label, img = predictions_array, true_label[i], img[i]
@@ -136,19 +140,22 @@ plt.show()
 # Grab an image from the test dataset.
 img = test_images[1]
 
-print(img.shape)
+print(img.shape) #(28, 28)
 
 # Add the image to a batch where it's the only member.
 img = (np.expand_dims(img,0))
 
-print(img.shape)
+print(img.shape) #(1, 28, 28)
 
 predictions_single = probability_model.predict(img)
 
 print(predictions_single)
+'''
+[[2.9137442e-07 5.1091330e-17 9.9978989e-01 3.5679581e-11 1.8500857e-04
+  3.9691625e-11 2.4856185e-05 2.6581863e-18 1.5170033e-10 1.6605610e-16]]
+  '''
 
 plot_value_array(1, predictions_single[0], test_labels)
 _ = plt.xticks(range(10), class_names, rotation=45)
 
 np.argmax(predictions_single[0])
-
