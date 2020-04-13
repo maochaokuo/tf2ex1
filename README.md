@@ -7,6 +7,9 @@ tensorflow 2 example 1
     size (Zoom) with Ctrl+Mouse Wheel option
 
 ## change log
+### 2020/4/13
+1. add trainEvaluate.py
+
 ### 2020/4/4
 1. add text_classification_lstm.py
 2. add googlePredictRnnLstm.py
