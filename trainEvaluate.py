@@ -1,3 +1,10 @@
+import tensorflow as tf
+import tensorflow.keras.layers as layers
+from tensorflow import keras
+
+mnist = tf.keras.datasets.mnist
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
 # Get the model.
 inputs = keras.Input(shape=(784,), name='digits')
 x = layers.Dense(64, activation='relu', name='dense_1')(inputs)
@@ -39,5 +46,5 @@ train_dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train))
 train_dataset = train_dataset.shuffle(buffer_size=1024).batch(batch_size)
 
 # Prepare the validation dataset.
-val_dataset = tf.data.Dataset.from_tensor_slices((x_val, y_val))
+val_dataset = tf.data.Dataset.from_tensor_slices((x_test, y_test))
 val_dataset = val_dataset.batch(64)
