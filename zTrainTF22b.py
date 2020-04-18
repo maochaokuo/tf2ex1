@@ -45,22 +45,34 @@ print(dfVt.shape)  # (6590, 1)
 print(npVt.shape)  # (6590, 1)
 
 model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(32,1)),
-    keras.layers.Dense(128, activation='relu'),
+    keras.layers.LSTM(128, activation='relu'),
+    # keras.layers.SimpleRNN(128),  # faster
+    keras.layers.Dropout(0.25),
+    keras.layers.BatchNormalization(),
+    # keras.layers.LSTM(128, activation='relu'),
+    keras.layers.Dropout(0.2),
+    keras.layers.Dense(32, activation='relu'),
+    keras.layers.Dropout(0.2),
 
-    tf.keras.layers.Dropout(0.2),
-    tf.keras.layers.Dense(64, activation='relu'),
-    tf.keras.layers.Dropout(0.1),
-    tf.keras.layers.Dense(32, activation='relu'),
+    # # keras.layers.LSTM(128, return_sequences=True),
+    #
+    # # keras.layers.Flatten(input_shape=(32, 1)),
+    # keras.layers.Dense(128, activation='relu'),
+    #
+    # keras.layers.Dropout(0.2),
+    # # keras.layers.Bidirectional(tf.keras.layers.LSTM(128, return_sequences=True)),
+    # # keras.layers.Bidirectional(tf.keras.layers.LSTM(32)),
+    # keras.layers.Dense(64, activation='relu'),
+    # keras.layers.Dropout(0.1),
+    # keras.layers.Dense(32, activation='relu'),
 
-    keras.layers.Dense(5)
+    keras.layers.Dense(5, activation='softmax')
 ])
-
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-model.fit(npTd, npTt, epochs=100)
+model.fit(npTd, npTt, epochs=10)
 
 test_loss, test_acc = model.evaluate(npVd, npVt, verbose=2)
 print('\nTest accuracy:', test_acc)
