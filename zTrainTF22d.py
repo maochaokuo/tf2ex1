@@ -46,7 +46,7 @@ print(npVt.shape)  # (6891, 1)
 model = keras.Sequential([
     keras.layers.Flatten(input_shape=(32, 1)),
     keras.layers.Dense(128, activation='relu'),
-    keras.layers.Dropout(0.25),
+    keras.layers.Dropout(0.2),
     # keras.layers.LSTM(128, activation='relu'),
     # keras.layers.Dropout(0.25),
     # keras.layers.BatchNormalization(),
