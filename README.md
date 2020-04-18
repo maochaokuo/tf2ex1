@@ -7,6 +7,9 @@ tensorflow 2 example 1
     size (Zoom) with Ctrl+Mouse Wheel option
 
 ## change log
+### 2020/4/18
+1. add zTrainTF22b.py
+
 ### 2020/4/17
 1. add zTrainTF22a.py
 2. add data files (*.csv)
