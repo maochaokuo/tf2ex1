@@ -51,9 +51,10 @@ model = keras.Sequential([
     # keras.layers.Dropout(0.25),
     # keras.layers.BatchNormalization(),
     # # keras.layers.SimpleRNN(128, activation='relu'),  # faster
-    keras.layers.Dropout(0.2),
-    keras.layers.Dense(32, activation='relu'),
-    keras.layers.Dropout(0.1),
+    # keras.layers.Dense(64, activation='relu'),
+    # keras.layers.Dropout(0.2),
+    # keras.layers.Dense(32, activation='relu'),
+    # keras.layers.Dropout(0.1),
     keras.layers.Dense(2, activation='softmax')
 ])
 
