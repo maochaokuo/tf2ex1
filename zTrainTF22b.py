@@ -50,6 +50,9 @@ model = keras.Sequential([
     keras.layers.Flatten(input_shape=(32, 1)),
     keras.layers.Dense(128, activation='relu'),
     keras.layers.Dropout(0.2),
+    keras.layers.Dense(32, activation='relu'),
+    keras.layers.Dropout(0.1),
+
     # keras.layers.LSTM(128, activation='relu'),
     # keras.layers.Dropout(0.25),
     # keras.layers.BatchNormalization(),
@@ -58,13 +61,14 @@ model = keras.Sequential([
     # keras.layers.Dropout(0.2),
     # keras.layers.Dense(32, activation='relu'),
     # keras.layers.Dropout(0.1),
+
     keras.layers.Dense(2, activation='softmax')
 ])
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-model.fit(npTd, npTt, epochs=10)  # 10
+model.fit(npTd, npTt, epochs=50)  # 10
 
 test_loss, test_acc = model.evaluate(npVd, npVt, verbose=2)
 print('\nTest accuracy:', test_acc)
