@@ -55,10 +55,10 @@ test_labels = test_dataset.pop('MPG')
 def norm(x):
     return (x - train_stats['mean']) / train_stats['std']
 
-
 normed_train_data = norm(train_dataset)
 normed_test_data = norm(test_dataset)
-
+print(train_dataset.shape)
+print(len(train_dataset.keys()))
 
 def build_model():
     model = keras.Sequential([
@@ -73,7 +73,6 @@ def build_model():
                   optimizer=optimizer,
                   metrics=['mae', 'mse'])
     return model
-
 
 model = build_model()
 
