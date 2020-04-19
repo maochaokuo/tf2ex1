@@ -8,10 +8,11 @@ import pandas as pd
 import numpy as np
 from numpy import newaxis
 import datetime
+from random import random
 
 import winsound
 
-EPOCHNUM = 300  # 50
+EPOCHNUM = 50  # 50
 
 startime = datetime.datetime.now()
 trainDataFile = tf.keras.utils.get_file("trainData.csv",
@@ -49,7 +50,6 @@ dfVt = pd.read_csv(verifyTendFile, index_col=None)  # this is when use pandas
 npVt = dfVt.to_numpy()
 print(dfVt.shape)  # (6590, 1)
 print(npVt.shape)  # (6590, 1)
-
 
 def func1():
     model = keras.Sequential([
@@ -90,11 +90,24 @@ def func1():
 
     model.save(filename)
 
-
 # new_model = tf.keras.models.load_model(filename)
 #
 # # Check its architecture
 # print(new_model.summary())
 
 while 1:
+    rnd = random()
+    rnd = rnd * 5
+    if rnd < 1:
+        EPOCHNUM = 50
+    elif rnd < 2:
+        EPOCHNUM = 100
+    elif rnd < 3:
+        EPOCHNUM = 300
+    elif rnd < 4:
+        EPOCHNUM = 500
+    else:
+        EPOCHNUM = 900
+    print('EPOCHNUM='+str(EPOCHNUM))
+    startime = datetime.datetime.now()
     func1()
