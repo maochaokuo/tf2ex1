@@ -7,7 +7,9 @@ from tensorflow import keras
 import pandas as pd
 import numpy as np
 from numpy import newaxis
+import datetime
 
+startime = datetime.datetime.now()
 trainDataFile = tf.keras.utils.get_file("trainData.csv",
                                         "https://raw.githubusercontent.com/maochaokuo/tf2ex1/master/data/201807"
                                         "-202003/20180702trainData.csv", cache_dir="c:/temp")
@@ -45,28 +47,18 @@ print(dfVt.shape)  # (6590, 1)
 print(npVt.shape)  # (6590, 1)
 
 model = keras.Sequential([
-    keras.layers.LSTM(128, activation='relu'),
-    # keras.layers.SimpleRNN(128),  # faster
-    keras.layers.Dropout(0.25),
-    keras.layers.BatchNormalization(),
+    keras.layers.Flatten(input_shape=(32, 1)),
+    keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dropout(0.2),
     # keras.layers.LSTM(128, activation='relu'),
-    keras.layers.Dropout(0.2),
-    keras.layers.Dense(32, activation='relu'),
-    keras.layers.Dropout(0.2),
-
-    # # keras.layers.LSTM(128, return_sequences=True),
-    #
-    # # keras.layers.Flatten(input_shape=(32, 1)),
-    # keras.layers.Dense(128, activation='relu'),
-    #
-    # keras.layers.Dropout(0.2),
-    # # keras.layers.Bidirectional(tf.keras.layers.LSTM(128, return_sequences=True)),
-    # # keras.layers.Bidirectional(tf.keras.layers.LSTM(32)),
+    # keras.layers.Dropout(0.25),
+    # keras.layers.BatchNormalization(),
+    # # keras.layers.SimpleRNN(128, activation='relu'),  # faster
     # keras.layers.Dense(64, activation='relu'),
-    # keras.layers.Dropout(0.1),
+    # keras.layers.Dropout(0.2),
     # keras.layers.Dense(32, activation='relu'),
-
-    keras.layers.Dense(5, activation='softmax')
+    # keras.layers.Dropout(0.1),
+    keras.layers.Dense(2, activation='softmax')
 ])
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
@@ -77,3 +69,6 @@ model.fit(npTd, npTt, epochs=10)
 test_loss, test_acc = model.evaluate(npVd, npVt, verbose=2)
 print('\nTest accuracy:', test_acc)
 
+endtime = datetime.datetime.now()
+print(startime)
+print(endtime)
