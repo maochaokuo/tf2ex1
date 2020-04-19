@@ -64,7 +64,7 @@ model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-model.fit(npTd, npTt, epochs=10)
+model.fit(npTd, npTt, epochs=10)  # 10
 
 test_loss, test_acc = model.evaluate(npVd, npVt, verbose=2)
 print('\nTest accuracy:', test_acc)
