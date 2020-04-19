@@ -52,6 +52,8 @@ model = keras.Sequential([
     keras.layers.Dropout(0.2),
     keras.layers.Dense(32, activation='relu'),
     keras.layers.Dropout(0.1),
+    keras.layers.Dense(8, activation='relu'),
+    keras.layers.Dropout(0.05),
 
     # keras.layers.LSTM(128, activation='relu'),
     # keras.layers.Dropout(0.25),
