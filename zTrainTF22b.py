@@ -9,6 +9,10 @@ import numpy as np
 from numpy import newaxis
 import datetime
 
+import winsound
+
+EPOCHNUM = 300  # 50
+
 startime = datetime.datetime.now()
 trainDataFile = tf.keras.utils.get_file("trainData.csv",
                                         "https://raw.githubusercontent.com/maochaokuo/tf2ex1/master/data/201807"
@@ -46,35 +50,51 @@ npVt = dfVt.to_numpy()
 print(dfVt.shape)  # (6590, 1)
 print(npVt.shape)  # (6590, 1)
 
-model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(32, 1)),
-    keras.layers.Dense(128, activation='relu'),
-    keras.layers.Dropout(0.2),
-    keras.layers.Dense(32, activation='relu'),
-    keras.layers.Dropout(0.1),
-    keras.layers.Dense(8, activation='relu'),
-    keras.layers.Dropout(0.05),
 
-    # keras.layers.LSTM(128, activation='relu'),
-    # keras.layers.Dropout(0.25),
-    # keras.layers.BatchNormalization(),
-    # # keras.layers.SimpleRNN(128, activation='relu'),  # faster
-    # keras.layers.Dense(64, activation='relu'),
-    # keras.layers.Dropout(0.2),
-    # keras.layers.Dense(32, activation='relu'),
-    # keras.layers.Dropout(0.1),
+def func1():
+    model = keras.Sequential([
+        keras.layers.Flatten(input_shape=(32, 1)),
+        keras.layers.Dense(128, activation='relu'),
+        keras.layers.Dropout(0.2),
+        keras.layers.Dense(32, activation='relu'),
+        keras.layers.Dropout(0.1),
+        keras.layers.Dense(8, activation='relu'),
+        keras.layers.Dropout(0.05),
 
-    keras.layers.Dense(2, activation='softmax')
-])
-model.compile(optimizer='adam',
-              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-              metrics=['accuracy'])
+        # keras.layers.LSTM(128, activation='relu'),
+        # keras.layers.Dropout(0.25),
+        # keras.layers.BatchNormalization(),
+        # # keras.layers.SimpleRNN(128, activation='relu'),  # faster
+        # keras.layers.Dense(64, activation='relu'),
+        # keras.layers.Dropout(0.2),
+        # keras.layers.Dense(32, activation='relu'),
+        # keras.layers.Dropout(0.1),
 
-model.fit(npTd, npTt, epochs=50)  # 10
+        keras.layers.Dense(2, activation='softmax')
+    ])
+    model.compile(optimizer='adam',
+                  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                  metrics=['accuracy'])
 
-test_loss, test_acc = model.evaluate(npVd, npVt, verbose=2)
-print('\nTest accuracy:', test_acc)
+    model.fit(npTd, npTt, epochs=EPOCHNUM)  # 60 10
 
-endtime = datetime.datetime.now()
-print(startime)
-print(endtime)
+    test_loss, test_acc = model.evaluate(npVd, npVt, verbose=2)
+    print('\nTest accuracy:', test_acc)
+
+    endtime = datetime.datetime.now()
+    print(startime)
+    print(endtime)
+
+    filename = 'data/201807-202003/saved_model_' + str(EPOCHNUM) + '_' + str(test_acc)
+    print(filename)
+
+    model.save(filename)
+
+
+# new_model = tf.keras.models.load_model(filename)
+#
+# # Check its architecture
+# print(new_model.summary())
+
+while 1:
+    func1()
