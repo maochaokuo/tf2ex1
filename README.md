@@ -7,6 +7,9 @@ tensorflow 2 example 1
     size (Zoom) with Ctrl+Mouse Wheel option
 
 ## change log
+### 2020/4/20
+1. add zTrainTest1.py
+
 ### 2020/4/19
 1. best so far(classification) zTrainTF22b.py accuracy 0.6457->0.6187
 2. add tend PL csv files, for regression
