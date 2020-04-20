@@ -69,14 +69,15 @@ probability_model = tf.keras.Sequential([model,
 predictions = probability_model.predict(test_images)
 
 print(predictions[0])
+print(predictions.shape)
 '''
 [5.2342743e-06 9.6027564e-10 2.0782998e-09 2.4984509e-08 9.6596625e-07
  4.3761372e-03 2.8325094e-06 8.8006191e-02 3.5270450e-06 9.0760505e-01]
  '''
 
-np.argmax(predictions[0])
+print(np.argmax(predictions[0]))
 
-print(test_labels[0]) #9
+print(test_labels[0])  # 9
 
 def plot_image(i, predictions_array, true_label, img):
   predictions_array, true_label, img = predictions_array, true_label[i], img[i]
