@@ -57,6 +57,6 @@ print(predictVd.shape)
 
 print(predictVd[:10])
 print(np.argmax(predictVd[:10]))
-print(npVt[:10])
-np.savetxt("data/201807-202003/npVt.csv", npVt, delimiter=",")
+print(predictTd[:10])
+np.savetxt("data/201807-202003/predictTd.csv", predictTd, delimiter=",")
 np.savetxt("data/201807-202003/predictVd.csv", predictVd, delimiter=",")

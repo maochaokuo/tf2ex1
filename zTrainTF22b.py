@@ -98,16 +98,16 @@ def func1():
 while 1:
     rnd = random()
     rnd = rnd * 3
-    # if rnd < 2:  # 1:
-    #     EPOCHNUM = 50
-    # # elif rnd < 2:
-    # #     EPOCHNUM = 100
-    # # elif rnd < 3:
-    # #     EPOCHNUM = 300
-    # # elif rnd < 4:
-    # #     EPOCHNUM = 500
-    # else:
-    #     EPOCHNUM = 100  # 900
+    if rnd < 2:  # 1:
+        EPOCHNUM = 50
+    # elif rnd < 2:
+    #     EPOCHNUM = 100
+    # elif rnd < 3:
+    #     EPOCHNUM = 300
+    # elif rnd < 4:
+    #     EPOCHNUM = 500
+    else:
+        EPOCHNUM = 100  # 900
     print('EPOCHNUM='+str(EPOCHNUM))
     startime = datetime.datetime.now()
     func1()
