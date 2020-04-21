@@ -85,10 +85,10 @@ def func1():
     print(startime)
     print(endtime)
 
-    filename = 'data/201807-202003/saved_model_' + str(EPOCHNUM) + '_' + str(test_acc)
-    print(filename)
-
-    model.save(filename)
+    if test_acc > 0.61:
+        filename = 'data/201807-202003/saved_model_' + str(EPOCHNUM) + '_' + str(test_acc)
+        print(filename)
+        model.save(filename)
 
 # new_model = tf.keras.models.load_model(filename)
 #
@@ -97,8 +97,8 @@ def func1():
 
 while 1:
     rnd = random()
-    rnd = rnd * 3
-    if rnd < 2:  # 1:
+    rnd = rnd * 9
+    if rnd < 8:  # 1:
         EPOCHNUM = 50
     # elif rnd < 2:
     #     EPOCHNUM = 100
