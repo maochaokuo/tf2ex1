@@ -85,7 +85,7 @@ def func1():
     print(startime)
     print(endtime)
 
-    if test_acc > 0.61:
+    if test_acc > 0.62:
         filename = 'data/201807-202003/saved_model_' + str(EPOCHNUM) + '_' + str(test_acc)
         print(filename)
         model.save(filename)
