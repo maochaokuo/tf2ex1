@@ -85,7 +85,7 @@ def func1():
     print(startime)
     print(endtime)
 
-    if test_acc > 0.62:
+    if test_acc > 0.63:
         filename = 'data/201807-202003/saved_model_' + str(EPOCHNUM) + '_' + str(test_acc)
         print(filename)
         model.save(filename)
@@ -98,16 +98,16 @@ def func1():
 while 1:
     rnd = random()
     rnd = rnd * 9
-    if rnd < 8:  # 1:
-        EPOCHNUM = 50
-    # elif rnd < 2:
-    #     EPOCHNUM = 100
-    # elif rnd < 3:
-    #     EPOCHNUM = 300
-    # elif rnd < 4:
-    #     EPOCHNUM = 500
-    else:
-        EPOCHNUM = 100  # 900
+    # if rnd < 8:  # 1:
+    #     EPOCHNUM = 50
+    # # elif rnd < 2:
+    # #     EPOCHNUM = 100
+    # # elif rnd < 3:
+    # #     EPOCHNUM = 300
+    # # elif rnd < 4:
+    # #     EPOCHNUM = 500
+    # else:
+    #     EPOCHNUM = 100  # 900
     print('EPOCHNUM='+str(EPOCHNUM))
     startime = datetime.datetime.now()
     func1()
