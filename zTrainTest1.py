@@ -40,7 +40,8 @@ npVt = dfVt.to_numpy()
 print(dfVt.shape)  # (6590, 1)
 print(npVt.shape)  # (6590, 1)
 
-filename = 'data/201807-202003/saved_model_50_0.6218512654304504'
+# filename = 'data/201807-202003/saved_model_50_0.6218512654304504'
+filename = 'data/201807-202003/saved_model_50_0.6347495913505554'
 model = tf.keras.models.load_model(filename)
 
 # Check its architecture
